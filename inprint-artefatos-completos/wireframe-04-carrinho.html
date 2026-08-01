@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Wireframe — Carrinho de orçamento</title>
+<style>
+body{font-family:Arial,sans-serif; color:#1F2937; max-width:640px; margin:0 auto; padding:20px;}
+.item{display:flex; gap:12px; align-items:center; border:1px solid #E5E7EB; border-radius:12px; padding:10px; margin-bottom:10px;}
+.placeholder{width:56px; height:56px; border:1px dashed #D1D5DB; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; color:#9CA3AF;}
+.info{flex:1;}
+.info p{margin:0;}
+.info .n{font-size:13px;}
+.info .c{font-size:11px; color:#9CA3AF;}
+input,textarea{padding:9px; border:1px solid #E5E7EB; border-radius:4px; font-family:Arial,sans-serif; font-size:13px;}
+.qty{width:70px;}
+.addbtn{background:#F9FAFB; border:1px solid #D1D5DB; font-size:12px; padding:6px 10px; margin-bottom:24px;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;}
+.full{width:100%; box-sizing:border-box; margin-bottom:10px;}
+textarea{width:100%; box-sizing:border-box; min-height:60px; margin-bottom:16px;}
+.btn{background:#0F4C5C; color:#fff; border:none; font-size:13px; padding:10px 20px;}
+</style>
+</head>
+<body>
+<p style="font-size:15px; font-weight:500; margin:0 0 4px;">Seu orçamento</p>
+<p style="font-size:12px; color:#6B7280; margin:0 0 16px;">3 itens adicionados</p>
+
+<div class="item"><div class="placeholder">Imagem</div><div class="info"><p class="n">Squeeze inox 500ml</p><p class="c">Cód. SQ-1023</p></div><input class="qty" placeholder="Qtd">🗑</div>
+<div class="item"><div class="placeholder">Imagem</div><div class="info"><p class="n">Caderneta com caneta</p><p class="c">Cód. CD-0871</p></div><input class="qty" placeholder="Qtd">🗑</div>
+<div class="item"><div class="placeholder">Imagem</div><div class="info"><p class="n">Mochila personalizada</p><p class="c">Cód. MC-0456</p></div><input class="qty" placeholder="Qtd">🗑</div>
+
+<button class="addbtn">← Continuar navegando</button>
+
+<div style="border-top:1px solid #E5E7EB; padding-top:16px;">
+<p style="font-size:13px; font-weight:500; margin:0 0 10px;">Finalizar orçamento</p>
+<div class="grid2"><input placeholder="Nome"><input placeholder="Empresa"><input placeholder="E-mail"><input placeholder="Telefone / WhatsApp"></div>
+<input class="full" placeholder="Local de entrega">
+<textarea placeholder="Alguma observação sobre a personalização"></textarea>
+<button class="btn">Enviar orçamento</button>
+</div>
+</body>
+</html>

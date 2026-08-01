@@ -1,0 +1,46 @@
+<svg width="680" height="560" viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Direção de identidade visual da Inprint - versão final aprovada</title>
+<desc>Logotipo com wordmark In Print acima da seta, seta simplificada sem alvo ao centro, subtítulo Impressos e Brindes Personalizados abaixo da seta, paleta corporativa.</desc>
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap');
+</style>
+</defs>
+<rect width="680" height="560" fill="#FDFCFB"/>
+<text x="340" y="100" text-anchor="middle" style="font-family:'Dancing Script',cursive; font-weight:700; font-size:60px; fill:#1F2937;">In Print</text>
+<circle cx="190" cy="150" r="7" fill="#1F2937"/>
+<line x1="197" y1="150" x2="470" y2="150" stroke="#0F4C5C" stroke-width="4" stroke-linecap="round"/>
+<polygon points="470,138 498,150 470,162" fill="#0F4C5C"/>
+<text x="340" y="195" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-weight:500; font-size:13px; letter-spacing:3px; fill:#6B7280;">IMPRESSOS &amp; BRINDES PERSONALIZADOS</text>
+<line x1="140" y1="235" x2="540" y2="235" stroke="#E5E7EB" stroke-width="1"/>
+<g>
+<rect x="70" y="265" width="100" height="70" rx="8" fill="#1F2937"/>
+<text x="120" y="352" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:11px; fill:#6B7280;">#1F2937</text>
+<text x="120" y="366" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:10px; fill:#9CA3AF;">Texto / grafite</text>
+</g>
+<g>
+<rect x="180" y="265" width="100" height="70" rx="8" fill="#0F4C5C"/>
+<text x="230" y="352" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:11px; fill:#6B7280;">#0F4C5C</text>
+<text x="230" y="366" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:10px; fill:#9CA3AF;">Primário corporativo</text>
+</g>
+<g>
+<rect x="290" y="265" width="100" height="70" rx="8" fill="#D9776B"/>
+<text x="340" y="352" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:11px; fill:#6B7280;">#D9776B</text>
+<text x="340" y="366" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:10px; fill:#9CA3AF;">Accent herdado</text>
+</g>
+<g>
+<rect x="400" y="265" width="100" height="70" rx="8" fill="#4F9D96"/>
+<text x="450" y="352" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:11px; fill:#6B7280;">#4F9D96</text>
+<text x="450" y="366" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:10px; fill:#9CA3AF;">Accent secundário</text>
+</g>
+<g>
+<rect x="510" y="265" width="100" height="70" rx="8" fill="#E8DFD3"/>
+<text x="560" y="352" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:11px; fill:#6B7280;">#E8DFD3</text>
+<text x="560" y="366" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:10px; fill:#9CA3AF;">Neutro quente</text>
+</g>
+<line x1="140" y1="395" x2="540" y2="395" stroke="#E5E7EB" stroke-width="1"/>
+<text x="190" y="455" text-anchor="middle" style="font-family:'Dancing Script',cursive; font-weight:600; font-size:34px; fill:#1F2937;">In Print</text>
+<text x="190" y="478" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:11px; fill:#9CA3AF;">Wordmark manuscrita — só no logotipo</text>
+<text x="470" y="445" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:32px; fill:#1F2937;">Aa Bb Cc</text>
+<text x="470" y="478" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-size:11px; fill:#9CA3AF;">Poppins — títulos, textos e UI do site</text>
+</svg>

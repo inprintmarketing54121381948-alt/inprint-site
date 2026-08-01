@@ -1,0 +1,17 @@
+<svg width="680" height="300" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Favicon final da Inprint</title>
+<desc>Monograma IP maiúsculo na fonte manuscrita do logotipo, fundo na cor accent secundária #4F9D96, mostrado em tamanho de ícone e em uma simulação de aba de navegador.</desc>
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Poppins:wght@400;500&amp;display=swap');
+</style>
+</defs>
+<rect width="680" height="300" fill="#FDFCFB"/>
+<rect x="260" y="40" width="160" height="160" rx="32" fill="#4F9D96"/>
+<text x="340" y="155" text-anchor="middle" style="font-family:'Dancing Script',cursive; font-weight:700; font-size:76px; fill:#FFFFFF;">IP</text>
+<text x="340" y="228" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-weight:500; font-size:14px; fill:#374151;">Fundo #4F9D96</text>
+<rect x="290" y="255" width="150" height="34" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<rect x="300" y="262" width="20" height="20" rx="5" fill="#4F9D96"/>
+<text x="310" y="277" text-anchor="middle" style="font-family:'Dancing Script',cursive; font-weight:700; font-size:14px; fill:#FFFFFF;">IP</text>
+<text x="328" y="276" style="font-family:'Poppins',sans-serif; font-weight:400; font-size:12px; fill:#374151;">Inprint</text>
+</svg>

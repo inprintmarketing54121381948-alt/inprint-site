@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_consultoria_presenteados",
+  "info": {
+    "displayName": "Grupo de presenteados",
+    "description": "Perfil e quantidade de um grupo de presenteados (repetível no formulário de consultoria)"
+  },
+  "options": {},
+  "attributes": {
+    "tipo": {
+      "type": "string",
+      "description": "Ex: colaboradores, clientes, parceiros"
+    },
+    "quantidade": {
+      "type": "string"
+    }
+  }
+}

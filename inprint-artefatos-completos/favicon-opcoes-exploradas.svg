@@ -1,0 +1,28 @@
+<svg width="680" height="300" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Duas opções de favicon para a Inprint</title>
+<desc>Opção A: ícone com a seta simplificada. Opção B: monograma IP. Ambas mostradas em tamanho de ícone e em uma simulação de aba de navegador.</desc>
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap');
+</style>
+</defs>
+<rect width="680" height="300" fill="#FDFCFB"/>
+<rect x="110" y="40" width="110" height="110" rx="24" fill="#0F4C5C"/>
+<circle cx="140" cy="95" r="5" fill="#FFFFFF"/>
+<line x1="148" y1="95" x2="178" y2="95" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+<polygon points="178,86 202,95 178,104" fill="#FFFFFF"/>
+<text x="165" y="178" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-weight:500; font-size:14px; fill:#374151;">Opção A — seta</text>
+<rect x="90" y="205" width="150" height="34" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<rect x="100" y="212" width="20" height="20" rx="5" fill="#0F4C5C"/>
+<circle cx="106" cy="222" r="1.6" fill="#FFFFFF"/>
+<line x1="108" y1="222" x2="114" y2="222" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+<polygon points="114,219 118,222 114,225" fill="#FFFFFF"/>
+<text x="128" y="226" style="font-family:'Poppins',sans-serif; font-weight:400; font-size:12px; fill:#374151;">Inprint</text>
+<rect x="410" y="40" width="110" height="110" rx="24" fill="#0F4C5C"/>
+<text x="465" y="112" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:44px; fill:#FFFFFF;">IP</text>
+<text x="465" y="178" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-weight:500; font-size:14px; fill:#374151;">Opção B — monograma IP</text>
+<rect x="390" y="205" width="150" height="34" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<rect x="400" y="212" width="20" height="20" rx="5" fill="#0F4C5C"/>
+<text x="410" y="226" text-anchor="middle" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; fill:#FFFFFF;">IP</text>
+<text x="428" y="226" style="font-family:'Poppins',sans-serif; font-weight:400; font-size:12px; fill:#374151;">Inprint</text>
+</svg>

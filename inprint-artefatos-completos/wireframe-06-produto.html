@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Wireframe — Produto individual</title>
+<style>
+body{font-family:Arial,sans-serif; color:#1F2937; max-width:900px; margin:0 auto; padding:20px;}
+.crumb{font-size:11px; color:#9CA3AF; margin:0 0 16px;}
+.layout{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;}
+.main{height:220px; border:1px dashed #D1D5DB; display:flex; align-items:center; justify-content:center; font-size:12px; color:#9CA3AF; margin-bottom:8px;}
+.thumbs{display:flex; gap:8px;}
+.thumb{width:52px; height:52px; border:1px dashed #D1D5DB;}
+.code{font-size:11px; color:#9CA3AF; margin:0;}
+.name{font-size:18px; font-weight:500; margin:4px 0 10px;}
+.desc{font-size:13px; color:#6B7280; line-height:1.6; margin:0 0 16px;}
+.label{font-size:12px; font-weight:500; margin:0 0 6px;}
+.dots{display:flex; gap:6px; margin-bottom:16px;}
+.dot{width:22px; height:22px; border-radius:50%; border:1px solid #D1D5DB;}
+input{padding:8px; border:1px solid #E5E7EB; border-radius:4px;}
+.upload{border:1px dashed #D1D5DB; border-radius:8px; padding:12px; margin-bottom:16px;}
+.upload p{margin:0; font-size:12px;}
+.hint{font-size:11px; color:#9CA3AF;}
+.btn{width:100%; background:#0F4C5C; color:#fff; border:none; font-size:13px; padding:12px;}
+.tabs{display:flex; gap:20px; font-size:13px; margin-bottom:12px; border-top:1px solid #E5E7EB; padding-top:12px;}
+.tabs .active{font-weight:500; border-bottom:2px solid #0F4C5C; padding-bottom:6px;}
+.specs{font-size:12px; color:#6B7280; line-height:1.8; margin-bottom:24px;}
+.related{font-size:13px; font-weight:500; margin:0 0 10px;}
+.grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+.rcard{border:1px solid #E5E7EB; border-radius:10px; padding:8px;}
+.rimg{height:60px; border:1px dashed #D1D5DB; display:flex; align-items:center; justify-content:center; font-size:10px; color:#9CA3AF; margin-bottom:6px;}
+</style>
+</head>
+<body>
+<p class="crumb">Home &gt; Categorias &gt; Escritório &gt; Caderneta com caneta</p>
+<div class="layout">
+<div>
+<div class="main">Imagem principal</div>
+<div class="thumbs"><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div></div>
+</div>
+<div>
+<p class="code">Cód. CD-0871</p>
+<p class="name">Caderneta com caneta</p>
+<p class="desc">Caderneta de bolso com caneta integrada, personalizável com sua marca. Ideal para eventos corporativos e kits de boas-vindas.</p>
+<p class="label">Cor</p>
+<div class="dots"><div class="dot" style="background:#1F2937; border:2px solid #0F4C5C;"></div><div class="dot" style="background:#0F4C5C;"></div><div class="dot" style="background:#D9776B;"></div><div class="dot" style="background:#E8DFD3;"></div></div>
+<p class="label">Quantidade mínima: 50 unidades</p>
+<input placeholder="Quantidade" style="width:120px; margin-bottom:16px;">
+<div class="upload"><p>↑ Enviar sua logomarca</p><p class="hint">Formatos aceitos: PDF, AI, PNG</p></div>
+<button class="btn">+ Adicionar ao orçamento</button>
+</div>
+</div>
+<div class="tabs"><span class="active">Detalhes técnicos</span><span style="color:#6B7280;">Área de personalização</span><span style="color:#6B7280;">Prazo de produção</span></div>
+<p class="specs">Material: couro sintético<br>Dimensões: 14 x 9 cm<br>Peso aproximado: 90g</p>
+<p class="related">Produtos relacionados</p>
+<div class="grid4">
+<div class="rcard"><div class="rimg">Imagem</div>Caneta metal</div>
+<div class="rcard"><div class="rimg">Imagem</div>Bloco ecológico</div>
+<div class="rcard"><div class="rimg">Imagem</div>Porta-cartão</div>
+<div class="rcard"><div class="rimg">Imagem</div>Kit executivo</div>
+</div>
+</body>
+</html>

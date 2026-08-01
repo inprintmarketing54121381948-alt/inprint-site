@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In Print — Impressos e Brindes Personalizados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F4C5C;
+    --graphite:#1F2937;
+    --coral:#D9776B;
+    --teal:#4F9D96;
+    --sand:#E8DFD3;
+    --gray-600:#6B7280;
+    --gray-400:#9CA3AF;
+    --border:#E5E7EB;
+    --bg:#FDFCFB;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Poppins',sans-serif; color:var(--graphite); background:var(--bg);}
+  a{text-decoration:none; color:inherit;}
+  .script{font-family:'Dancing Script',cursive;}
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  .topbar{display:flex; justify-content:space-between; align-items:center; padding:6px 32px; background:var(--graphite); color:#fff; font-size:12px;}
+  .topbar span{opacity:.85;}
+
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 32px; border-bottom:1px solid var(--border); position:sticky; top:0; background:#fff; z-index:10; flex-wrap:wrap; gap:12px;}
+  .logo{display:flex; align-items:center; gap:10px; cursor:pointer;}
+  .logo-icon{width:36px; height:36px; border-radius:9px; background:var(--navy); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Dancing Script',cursive; font-weight:700; font-size:20px;}
+  .logo-text{font-size:19px; font-weight:600; font-family:'Dancing Script',cursive;}
+
+  nav{display:flex; gap:26px; font-size:14px; color:#374151;}
+  nav span{cursor:pointer;}
+  nav span:hover{color:var(--navy);}
+
+  .header-actions{display:flex; align-items:center; gap:18px;}
+  .cart-icon{position:relative; cursor:pointer; font-size:20px;}
+  .cart-badge{position:absolute; top:-8px; right:-10px; background:var(--coral); color:#4A1B0C; font-size:10px; border-radius:10px; padding:1px 5px; font-weight:600;}
+  .btn-primary{background:var(--navy); color:#fff; border:none; font-size:13px; padding:10px 18px; border-radius:6px; cursor:pointer; font-family:'Poppins',sans-serif; font-weight:500;}
+  .btn-primary:hover{background:#0c3d4a;}
+  .btn-secondary{background:#fff; border:1px solid #D1D5DB; font-size:13px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'Poppins',sans-serif;}
+  .btn-secondary:hover{background:#F9FAFB;}
+
+  .breadcrumb{padding:16px 32px 0; font-size:12px; color:var(--gray-400);}
+  .breadcrumb span{cursor:pointer;}
+  .breadcrumb span:hover{color:var(--navy);}
+
+  /* HOME */
+  .hero{display:grid; grid-template-columns:1.1fr 1fr; gap:40px; padding:56px 32px; align-items:center;}
+  .hero h1{font-size:34px; font-weight:500; line-height:1.25; margin:0 0 14px;}
+  .hero p{font-size:15px; color:var(--gray-600); margin:0 0 24px; max-width:440px;}
+  .hero-img{height:280px; border-radius:14px; background:linear-gradient(135deg,var(--sand),#fff); display:flex; align-items:center; justify-content:center; color:var(--gray-400); font-size:13px; border:1px solid var(--border);}
+
+  .diferenciais{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:0 32px 48px; max-width:1100px; margin:0 auto;}
+  .dif-card{text-align:center; padding:20px 12px;}
+  .dif-card .ic{width:44px; height:44px; border-radius:50%; background:var(--sand); display:flex; align-items:center; justify-content:center; margin:0 auto 10px; font-size:18px; color:var(--navy);}
+  .dif-card p{font-size:13px; color:var(--gray-600); margin:0;}
+
+  .section{padding:0 32px 48px;}
+  .section-title{font-size:20px; font-weight:500; margin:0 0 18px;}
+
+  .cat-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:12px;}
+  .cat-item{border:1px solid var(--border); border-radius:10px; padding:18px 8px; text-align:center; cursor:pointer; transition:.15s;}
+  .cat-item:hover{border-color:var(--teal); background:#F5FAF9;}
+  .cat-item .ic{font-size:22px; color:var(--navy); margin-bottom:6px;}
+  .cat-item p{font-size:12px; margin:0; color:#374151;}
+
+  .occ-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:12px;}
+  .occ-item{border:1px solid var(--border); border-radius:10px; padding:16px 8px; text-align:center; font-size:12px; cursor:pointer;}
+  .occ-item:hover{border-color:var(--coral); background:#FCF4F2;}
+
+  .kit-grid, .prod-grid, .related-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .card{border:1px solid var(--border); border-radius:12px; padding:12px; background:#fff;}
+  .card-img{height:110px; border-radius:8px; background:var(--sand); opacity:.6; margin-bottom:10px; display:flex; align-items:center; justify-content:center; color:var(--gray-400); font-size:11px;}
+  .card p.code{font-size:11px; color:var(--gray-400); margin:0;}
+  .card p.name{font-size:13px; margin:2px 0 10px;}
+  .card button{width:100%;}
+
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; background:var(--navy); border-radius:14px; padding:28px; margin:0 32px 48px; color:#fff;}
+  .stats div{text-align:center;}
+  .stats .num{font-size:24px; font-weight:600;}
+  .stats .lbl{font-size:12px; opacity:.85;}
+
+  .cta-final{margin:0 32px 48px; background:var(--sand); border-radius:14px; padding:36px; text-align:center;}
+  .cta-final h3{font-size:20px; font-weight:500; margin:0 0 16px;}
+
+  footer{border-top:1px solid var(--border); padding:36px 32px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:24px; font-size:13px; color:var(--gray-600);}
+  footer .flogo{font-family:'Dancing Script',cursive; font-size:26px; color:var(--navy); margin-bottom:10px;}
+  footer p.small{font-size:11px; margin:4px 0;}
+
+  /* CATEGORY LISTING */
+  .cat-header{display:flex; justify-content:space-between; align-items:center; padding:20px 32px 16px;}
+  .cat-header h2{font-size:22px; font-weight:500; margin:0;}
+  select{border:1px solid var(--border); border-radius:6px; padding:8px 12px; font-family:'Poppins',sans-serif; font-size:13px;}
+
+  .cat-layout{display:grid; grid-template-columns:180px 1fr; gap:28px; padding:0 32px 48px;}
+  .filters p.flabel{font-size:12px; font-weight:600; color:var(--gray-600); margin:0 0 8px; text-transform:uppercase; letter-spacing:.5px;}
+  .filters label{display:block; font-size:13px; margin-bottom:6px; color:#374151; cursor:pointer;}
+  .color-dots{display:flex; gap:6px; margin-bottom:16px;}
+  .dot{width:18px; height:18px; border-radius:50%; border:1px solid var(--border); cursor:pointer;}
+
+  .listing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;}
+  .pagination{display:flex; justify-content:center; gap:10px; font-size:13px; color:var(--gray-600);}
+  .pagination span.active{color:var(--navy); font-weight:600;}
+
+  /* PRODUCT */
+  .prod-layout{display:grid; grid-template-columns:1fr 1fr; gap:40px; padding:20px 32px 40px;}
+  .prod-gallery-main{height:280px; border-radius:12px; background:var(--sand); opacity:.6; margin-bottom:10px; display:flex; align-items:center; justify-content:center; color:var(--gray-400); font-size:13px;}
+  .thumbs{display:flex; gap:8px;}
+  .thumb{width:58px; height:58px; border-radius:8px; background:#F3F4F6; border:1px solid var(--border);}
+  .prod-code{font-size:12px; color:var(--gray-400); margin:0;}
+  .prod-name{font-size:22px; font-weight:500; margin:6px 0 12px;}
+  .prod-desc{font-size:14px; color:var(--gray-600); line-height:1.7; margin:0 0 20px;}
+  .field-label{font-size:12px; font-weight:600; margin:0 0 8px; color:#374151;}
+  .qty-input{width:110px; padding:9px 12px; border:1px solid var(--border); border-radius:6px; font-family:'Poppins',sans-serif; margin-bottom:18px; display:block;}
+  .upload-box{border:1.5px dashed #C7C9CE; border-radius:8px; padding:16px; margin-bottom:20px;}
+  .upload-box p{margin:0; font-size:13px;}
+  .upload-box p.hint{font-size:11px; color:var(--gray-400); margin-top:4px;}
+
+  .tabs{display:flex; gap:24px; border-bottom:1px solid var(--border); margin:8px 0 16px; font-size:13px;}
+  .tabs span{padding-bottom:10px; cursor:pointer; color:var(--gray-600);}
+  .tabs span.active{color:var(--graphite); font-weight:500; border-bottom:2px solid var(--navy);}
+
+  /* CART */
+  .cart-layout{padding:20px 32px 48px; max-width:640px;}
+  .cart-item{display:flex; gap:14px; align-items:center; border:1px solid var(--border); border-radius:12px; padding:12px; margin-bottom:10px;}
+  .cart-item .ci-img{width:56px; height:56px; border-radius:8px; background:var(--sand); opacity:.6; flex-shrink:0;}
+  .cart-item .ci-info{flex:1;}
+  .cart-item .ci-info p{margin:0;}
+  .cart-item .ci-info .n{font-size:13px;}
+  .cart-item .ci-info .c{font-size:11px; color:var(--gray-400);}
+  .cart-item input{width:64px; padding:6px; border:1px solid var(--border); border-radius:6px; text-align:center;}
+  .cart-item .remove{cursor:pointer; color:var(--gray-400); font-size:18px;}
+  .cart-empty{text-align:center; padding:60px 20px; color:var(--gray-400); font-size:14px;}
+  .finalize{border-top:1px solid var(--border); margin-top:20px; padding-top:20px;}
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;}
+  .form-grid input, .full-input, textarea{padding:10px 12px; border:1px solid var(--border); border-radius:6px; font-family:'Poppins',sans-serif; font-size:13px; width:100%;}
+  textarea{min-height:70px; margin-bottom:16px; resize:vertical;}
+  .full-input{margin-bottom:12px;}
+
+  /* CONSULTORIA */
+  .consult-layout{padding:20px 32px 48px; max-width:640px;}
+  .consult-layout h2{font-size:20px; font-weight:500; margin:0 0 6px;}
+  .consult-layout > p.intro{font-size:13px; color:var(--gray-600); margin:0 0 28px;}
+  .block-title{font-size:13px; font-weight:600; color:var(--navy); margin:0 0 10px; text-transform:uppercase; letter-spacing:.5px;}
+  .radio-row{display:flex; gap:18px; font-size:13px; margin:6px 0 20px;}
+  .radio-row label{display:flex; align-items:center; gap:6px; cursor:pointer;}
+  .group-row{display:grid; grid-template-columns:2fr 1fr; gap:10px; margin-bottom:10px;}
+  .add-group{background:#fff; border:1px solid #D1D5DB; border-radius:6px; padding:7px 12px; font-size:12px; cursor:pointer; width:fit-content;}
+
+  @media(max-width:900px){
+    .hero, .prod-layout, .cat-layout{grid-template-columns:1fr;}
+    nav{display:none;}
+    .diferenciais, .cat-grid, .occ-grid, .kit-grid, .listing-grid, .stats, footer{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span><i>&#9742;</i> (19) 0000-0000 &nbsp;&nbsp; WhatsApp</span>
+  <span>Atendemos todo o Brasil</span>
+</div>
+
+<header>
+  <div class="logo" onclick="showScreen('home')">
+    <div class="logo-icon">Ip</div>
+    <div class="logo-text">In Print</div>
+  </div>
+  <nav>
+    <span onclick="showScreen('categoria')">Categorias</span>
+    <span onclick="showScreen('categoria')">Ocasiões</span>
+    <span onclick="showScreen('categoria')">Kits especiais</span>
+    <span>Como funciona</span>
+    <span>Blog</span>
+  </nav>
+  <div class="header-actions">
+    <div class="cart-icon" onclick="showScreen('carrinho')">
+      🧾<span class="cart-badge" id="cartBadge">0</span>
+    </div>
+    <button class="btn-primary" onclick="showScreen('consultoria')">Pedir consultoria</button>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="screen active">
+  <div class="hero">
+    <div>
+      <h1>Brindes personalizados para eventos e empresas</h1>
+      <p>Prazo garantido, personalização sob medida e flexibilidade no pagamento. Do onboarding à feira de negócios, a Inprint entrega o brinde certo, no prazo certo.</p>
+      <button class="btn-primary" onclick="showScreen('consultoria')">Pedir consultoria</button>
+    </div>
+    <div class="hero-img">Imagem hero</div>
+  </div>
+
+  <div class="diferenciais">
+    <div class="dif-card"><div class="ic">⏱</div><p>Prazo garantido</p></div>
+    <div class="dif-card"><div class="ic">✎</div><p>Personalização real</p></div>
+    <div class="dif-card"><div class="ic">★</div><p>Qualidade</p></div>
+    <div class="dif-card"><div class="ic">$</div><p>Pagamento flexível</p></div>
+  </div>
+
+  <div class="section">
+    <p class="section-title">Navegue por categoria</p>
+    <div class="cat-grid">
+      <div class="cat-item" onclick="showScreen('categoria')"><div class="ic">✎</div><p>Canetas</p></div>
+      <div class="cat-item" onclick="showScreen('categoria')"><div class="ic">☕</div><p>Copos</p></div>
+      <div class="cat-item" onclick="showScreen('categoria')"><div class="ic">🎒</div><p>Mochilas</p></div>
+      <div class="cat-item" onclick="showScreen('categoria')"><div class="ic">📓</div><p>Escritório</p></div>
+      <div class="cat-item" onclick="showScreen('categoria')"><div class="ic">👕</div><p>Vestuário</p></div>
+      <div class="cat-item" onclick="showScreen('categoria')"><div class="ic">···</div><p>Ver todas</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-title">Navegue por ocasião</p>
+    <div class="occ-grid">
+      <div class="occ-item">Boas-vindas</div>
+      <div class="occ-item">SIPAT</div>
+      <div class="occ-item">Feiras</div>
+      <div class="occ-item">Aniversário</div>
+      <div class="occ-item">Fim de ano</div>
+      <div class="occ-item">Ver todas</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-title">Kits especiais</p>
+    <div class="kit-grid">
+      <div class="card"><div class="card-img">Imagem</div><p class="name">Kit onboarding</p></div>
+      <div class="card"><div class="card-img">Imagem</div><p class="name">Kit churrasco</p></div>
+      <div class="card"><div class="card-img">Imagem</div><p class="name">Kit café</p></div>
+      <div class="card"><div class="card-img">Imagem</div><p class="name">Kit executivo</p></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><div class="num">+X mil</div><div class="lbl">Clientes atendidos</div></div>
+    <div><div class="num">+X anos</div><div class="lbl">De mercado</div></div>
+    <div><div class="num">100%</div><div class="lbl">Personalizável</div></div>
+    <div><div class="num">98%</div><div class="lbl">Satisfação</div></div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Pronto para personalizar o brinde da sua empresa?</h3>
+    <button class="btn-primary" onclick="showScreen('consultoria')">Pedir consultoria</button>
+  </div>
+
+  <footer>
+    <div>
+      <div class="flogo">In Print</div>
+      <p class="small">Impressos e brindes personalizados para eventos e empresas.</p>
+    </div>
+    <div><b>Institucional</b><p class="small">Sobre nós</p><p class="small">Como funciona</p></div>
+    <div><b>Categorias</b><p class="small">Ver todas</p></div>
+    <div><b>Contato</b><p class="small">Telefone</p><p class="small">WhatsApp</p><p class="small">E-mail</p></div>
+  </footer>
+</section>
+
+<!-- ================= CATEGORIA ================= -->
+<section id="categoria" class="screen">
+  <div class="breadcrumb"><span onclick="showScreen('home')">Home</span> &gt; Categorias &gt; Escritório</div>
+  <div class="cat-header">
+    <h2>Escritório</h2>
+    <select><option>Ordenar por: relevância</option></select>
+  </div>
+  <div class="cat-layout">
+    <div class="filters">
+      <p class="flabel">Subcategoria</p>
+      <label><input type="checkbox"> Canetas</label>
+      <label><input type="checkbox"> Cadernos</label>
+      <label><input type="checkbox"> Blocos</label>
+      <label><input type="checkbox"> Porta-cartão</label>
+
+      <p class="flabel" style="margin-top:16px;">Material</p>
+      <label><input type="checkbox"> Metal</label>
+      <label><input type="checkbox"> Plástico</label>
+      <label><input type="checkbox"> Ecológico</label>
+
+      <p class="flabel" style="margin-top:16px;">Cor</p>
+      <div class="color-dots">
+        <div class="dot" style="background:#1F2937"></div>
+        <div class="dot" style="background:#0F4C5C"></div>
+        <div class="dot" style="background:#D9776B"></div>
+        <div class="dot" style="background:#E8DFD3"></div>
+      </div>
+    </div>
+    <div>
+      <div class="listing-grid">
+        <div class="card"><div class="card-img">Imagem</div><p class="code">CN-1023</p><p class="name">Caneta metal esferográfica</p><button class="btn-secondary" onclick="addToCart('Caneta metal esferográfica','CN-1023')">+ Adicionar</button></div>
+        <div class="card"><div class="card-img">Imagem</div><p class="code">CD-0871</p><p class="name">Caderneta com caneta</p><button class="btn-secondary" onclick="showScreen('produto')">+ Adicionar</button></div>
+        <div class="card"><div class="card-img">Imagem</div><p class="code">BL-0342</p><p class="name">Bloco de notas ecológico</p><button class="btn-secondary" onclick="addToCart('Bloco de notas ecológico','BL-0342')">+ Adicionar</button></div>
+        <div class="card"><div class="card-img">Imagem</div><p class="code">PC-0198</p><p class="name">Porta-cartão em couro</p><button class="btn-secondary" onclick="addToCart('Porta-cartão em couro','PC-0198')">+ Adicionar</button></div>
+        <div class="card"><div class="card-img">Imagem</div><p class="code">CN-1044</p><p class="name">Caneta plástica reciclada</p><button class="btn-secondary" onclick="addToCart('Caneta plástica reciclada','CN-1044')">+ Adicionar</button></div>
+        <div class="card"><div class="card-img">Imagem</div><p class="code">CD-0902</p><p class="name">Caderno wire-o personalizado</p><button class="btn-secondary" onclick="addToCart('Caderno wire-o personalizado','CD-0902')">+ Adicionar</button></div>
+      </div>
+      <div class="pagination"><span>&lsaquo;</span><span class="active">1</span><span>2</span><span>3</span><span>&rsaquo;</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUTO ================= -->
+<section id="produto" class="screen">
+  <div class="breadcrumb"><span onclick="showScreen('home')">Home</span> &gt; <span onclick="showScreen('categoria')">Categorias</span> &gt; Escritório &gt; Caderneta com caneta</div>
+  <div class="prod-layout">
+    <div>
+      <div class="prod-gallery-main">Imagem principal</div>
+      <div class="thumbs">
+        <div class="thumb"></div><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div>
+      </div>
+    </div>
+    <div>
+      <p class="prod-code">Cód. CD-0871</p>
+      <p class="prod-name">Caderneta com caneta</p>
+      <p class="prod-desc">Caderneta de bolso com caneta integrada, personalizável com sua marca. Ideal para eventos corporativos e kits de boas-vindas.</p>
+
+      <p class="field-label">Cor</p>
+      <div class="color-dots" style="margin-bottom:18px;">
+        <div class="dot" style="background:#1F2937; border:2px solid #0F4C5C; width:22px; height:22px;"></div>
+        <div class="dot" style="background:#0F4C5C; width:22px; height:22px;"></div>
+        <div class="dot" style="background:#D9776B; width:22px; height:22px;"></div>
+        <div class="dot" style="background:#E8DFD3; width:22px; height:22px;"></div>
+      </div>
+
+      <p class="field-label">Quantidade mínima: 50 unidades</p>
+      <input class="qty-input" placeholder="Quantidade" value="50">
+
+      <div class="upload-box">
+        <p><b>&#8593;</b> Enviar sua logomarca</p>
+        <p class="hint">Formatos aceitos: PDF, AI, PNG</p>
+      </div>
+
+      <button class="btn-primary" style="width:100%; padding:12px;" onclick="addToCart('Caderneta com caneta','CD-0871')">+ Adicionar ao orçamento</button>
+    </div>
+  </div>
+
+  <div style="padding:0 32px 40px;">
+    <div class="tabs">
+      <span class="active">Detalhes técnicos</span>
+      <span>Área de personalização</span>
+      <span>Prazo de produção</span>
+    </div>
+    <p style="font-size:13px; color:var(--gray-600); line-height:1.9; margin:0;">
+      Material: couro sintético<br>
+      Dimensões: 14 x 9 cm<br>
+      Peso aproximado: 90g
+    </p>
+  </div>
+
+  <div class="section">
+    <p class="section-title" style="font-size:16px;">Produtos relacionados</p>
+    <div class="related-grid">
+      <div class="card"><div class="card-img" style="height:70px;">Imagem</div><p class="name">Caneta metal</p></div>
+      <div class="card"><div class="card-img" style="height:70px;">Imagem</div><p class="name">Bloco ecológico</p></div>
+      <div class="card"><div class="card-img" style="height:70px;">Imagem</div><p class="name">Porta-cartão</p></div>
+      <div class="card"><div class="card-img" style="height:70px;">Imagem</div><p class="name">Kit executivo</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CARRINHO ================= -->
+<section id="carrinho" class="screen">
+  <div class="cart-layout">
+    <h2 style="font-size:20px; font-weight:500; margin:20px 0 4px;">Seu orçamento</h2>
+    <p style="font-size:12px; color:var(--gray-600); margin:0 0 20px;" id="cartCount">0 itens adicionados</p>
+
+    <div id="cartList"></div>
+    <div id="cartEmpty" class="cart-empty">Você ainda não adicionou nenhum item. <br><span style="color:var(--navy); cursor:pointer;" onclick="showScreen('categoria')">Explorar categorias</span></div>
+
+    <button class="btn-secondary" onclick="showScreen('categoria')" style="margin-bottom:24px;">&larr; Continuar navegando</button>
+
+    <div class="finalize">
+      <p class="block-title">Finalizar orçamento</p>
+      <div class="form-grid">
+        <input placeholder="Nome">
+        <input placeholder="Empresa">
+        <input placeholder="E-mail">
+        <input placeholder="Telefone / WhatsApp">
+      </div>
+      <input class="full-input" placeholder="Local de entrega">
+      <textarea placeholder="Alguma observação sobre a personalização"></textarea>
+      <button class="btn-primary">Enviar orçamento</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONSULTORIA ================= -->
+<section id="consultoria" class="screen">
+  <div class="consult-layout">
+    <h2>Peça uma consultoria</h2>
+    <p class="intro">Conte um pouco sobre a ação e a gente sugere os brindes certos para o seu evento.</p>
+
+    <p class="block-title">Dados de contato</p>
+    <div class="form-grid">
+      <input placeholder="Nome"><input placeholder="Empresa">
+      <input placeholder="E-mail"><input placeholder="Telefone / WhatsApp">
+    </div>
+
+    <p class="block-title" style="margin-top:10px;">Sobre a empresa</p>
+    <div class="form-grid">
+      <input placeholder="Site da empresa">
+      <input placeholder="Instagram / Facebook / outras redes">
+    </div>
+
+    <p class="block-title" style="margin-top:10px;">Sobre o evento ou ação</p>
+    <div class="form-grid">
+      <input placeholder="Qual é a ação ou tipo de evento">
+      <input placeholder="Data do evento">
+    </div>
+    <input class="full-input" placeholder="Local de entrega">
+
+    <p class="block-title">Sobre os presenteados</p>
+    <input class="full-input" placeholder="Quem são os presenteados (colaboradores, clientes, parceiros)">
+    <div class="group-row">
+      <input placeholder="Tipo de presenteado">
+      <input placeholder="Quantidade">
+    </div>
+    <button class="add-group" style="margin-bottom:20px;">+ Adicionar outro grupo</button>
+
+    <p class="block-title">Personalização</p>
+    <p style="font-size:13px; color:var(--gray-600); margin:0;">A logomarca permite aplicação em monocromia?</p>
+    <div class="radio-row">
+      <label><input type="radio" name="mono"> Sim</label>
+      <label><input type="radio" name="mono"> Não</label>
+      <label><input type="radio" name="mono"> Não sei</label>
+    </div>
+
+    <p class="block-title">Orçamento</p>
+    <p style="font-size:13px; color:var(--gray-600); margin:0;">Já existe um orçamento definido para essa ação?</p>
+    <div class="radio-row">
+      <label><input type="radio" name="budget"> Sim</label>
+      <label><input type="radio" name="budget"> Não</label>
+      <input placeholder="Valor aproximado (opcional)" style="flex:1; padding:8px 10px; border:1px solid var(--border); border-radius:6px;">
+    </div>
+
+    <textarea placeholder="Algo mais que queira nos contar sobre essa ação"></textarea>
+    <button class="btn-primary">Enviar para consultoria</button>
+  </div>
+</section>
+
+<script>
+  function showScreen(id){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+    if(id === 'carrinho') renderCart();
+  }
+
+  let cart = [];
+  function addToCart(name, code){
+    cart.push({name, code, qty:1});
+    document.getElementById('cartBadge').textContent = cart.length;
+  }
+  function removeFromCart(i){
+    cart.splice(i,1);
+    document.getElementById('cartBadge').textContent = cart.length;
+    renderCart();
+  }
+  function renderCart(){
+    const list = document.getElementById('cartList');
+    const empty = document.getElementById('cartEmpty');
+    document.getElementById('cartCount').textContent = cart.length + (cart.length===1 ? ' item adicionado' : ' itens adicionados');
+    if(cart.length === 0){
+      list.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    list.innerHTML = cart.map((item,i) => `
+      <div class="cart-item">
+        <div class="ci-img"></div>
+        <div class="ci-info"><p class="n">${item.name}</p><p class="c">Cód. ${item.code}</p></div>
+        <input value="${item.qty}">
+        <span class="remove" onclick="removeFromCart(${i})">&#128465;</span>
+      </div>`).join('');
+  }
+</script>
+
+</body>
+</html>

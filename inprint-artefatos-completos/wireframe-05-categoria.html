@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Wireframe — Listagem de categoria</title>
+<style>
+body{font-family:Arial,sans-serif; color:#1F2937; max-width:900px; margin:0 auto; padding:20px;}
+.crumb{font-size:11px; color:#9CA3AF; margin:0 0 12px;}
+.headrow{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+.headrow p{font-size:18px; font-weight:500; margin:0;}
+select{width:180px; padding:6px;}
+.layout{display:grid; grid-template-columns:160px 1fr; gap:20px;}
+.flabel{font-size:12px; font-weight:600; color:#6B7280; margin:0 0 8px;}
+.filters label{display:block; font-size:12px; margin-bottom:6px;}
+.dots{display:flex; gap:6px;}
+.dot{width:18px; height:18px; border-radius:50%; border:1px solid #D1D5DB;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px;}
+.card{border:1px solid #E5E7EB; border-radius:12px; padding:10px;}
+.placeholder{height:90px; border:1px dashed #D1D5DB; display:flex; align-items:center; justify-content:center; font-size:11px; color:#9CA3AF; margin-bottom:8px;}
+.code{font-size:11px; color:#9CA3AF; margin:0;}
+.name{font-size:12px; margin:2px 0 8px;}
+.addbtn{width:100%; background:#F9FAFB; border:1px solid #D1D5DB; font-size:11px; padding:6px;}
+.pagination{display:flex; justify-content:center; gap:8px; font-size:12px; color:#6B7280;}
+.pagination .active{color:#1F2937; font-weight:600;}
+</style>
+</head>
+<body>
+<p class="crumb">Home &gt; Categorias &gt; Escritório</p>
+<div class="headrow"><p>Escritório</p><select><option>Ordenar por: relevância</option></select></div>
+<div class="layout">
+<div class="filters">
+<p class="flabel">Subcategoria</p>
+<label><input type="checkbox"> Canetas</label><label><input type="checkbox"> Cadernos</label><label><input type="checkbox"> Blocos</label><label><input type="checkbox"> Porta-cartão</label>
+<p class="flabel" style="margin-top:16px;">Material</p>
+<label><input type="checkbox"> Metal</label><label><input type="checkbox"> Plástico</label><label><input type="checkbox"> Ecológico</label>
+<p class="flabel" style="margin-top:16px;">Cor</p>
+<div class="dots"><div class="dot" style="background:#1F2937"></div><div class="dot" style="background:#0F4C5C"></div><div class="dot" style="background:#D9776B"></div><div class="dot" style="background:#E8DFD3"></div></div>
+</div>
+<div>
+<div class="grid3">
+<div class="card"><div class="placeholder">Imagem</div><p class="code">CN-1023</p><p class="name">Caneta metal esferográfica</p><button class="addbtn">+ Adicionar</button></div>
+<div class="card"><div class="placeholder">Imagem</div><p class="code">CD-0871</p><p class="name">Caderneta com caneta</p><button class="addbtn">+ Adicionar</button></div>
+<div class="card"><div class="placeholder">Imagem</div><p class="code">BL-0342</p><p class="name">Bloco de notas ecológico</p><button class="addbtn">+ Adicionar</button></div>
+<div class="card"><div class="placeholder">Imagem</div><p class="code">PC-0198</p><p class="name">Porta-cartão em couro</p><button class="addbtn">+ Adicionar</button></div>
+<div class="card"><div class="placeholder">Imagem</div><p class="code">CN-1044</p><p class="name">Caneta plástica reciclada</p><button class="addbtn">+ Adicionar</button></div>
+<div class="card"><div class="placeholder">Imagem</div><p class="code">CD-0902</p><p class="name">Caderno wire-o personalizado</p><button class="addbtn">+ Adicionar</button></div>
+</div>
+<div class="pagination"><span>‹</span><span class="active">1</span><span>2</span><span>3</span><span>›</span></div>
+</div>
+</div>
+</body>
+</html>

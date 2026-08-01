@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Wireframe — Formulário de consultoria</title>
+<style>
+body{font-family:Arial,sans-serif; color:#1F2937; max-width:640px; margin:0 auto; padding:20px;}
+.block{font-size:12px; font-weight:600; color:#6B7280; margin:20px 0 8px;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+input,textarea{padding:9px; border:1px solid #E5E7EB; border-radius:4px; font-family:Arial,sans-serif; font-size:13px; width:100%; box-sizing:border-box;}
+textarea{min-height:70px;}
+.radios{display:flex; gap:16px; margin-top:6px; font-size:13px;}
+.addbtn{background:#F9FAFB; border:1px solid #D1D5DB; font-size:12px; padding:6px 10px; margin-top:8px;}
+.btn{background:#0F4C5C; color:#fff; border:none; font-size:13px; padding:10px 20px; margin-top:16px;}
+</style>
+</head>
+<body>
+<p class="block" style="margin-top:0;">Dados de contato</p>
+<div class="grid2"><input placeholder="Nome"><input placeholder="Empresa"><input placeholder="E-mail"><input placeholder="Telefone / WhatsApp"></div>
+
+<p class="block">Sobre a empresa</p>
+<div class="grid2"><input placeholder="Site da empresa"><input placeholder="Instagram / Facebook / outras redes"></div>
+
+<p class="block">Sobre o evento ou ação</p>
+<div class="grid2"><input placeholder="Qual é a ação ou tipo de evento"><input placeholder="Data do evento"></div>
+<input placeholder="Local de entrega" style="margin-top:10px;">
+
+<p class="block">Sobre os presenteados</p>
+<input placeholder="Quem são os presenteados (colaboradores, clientes, parceiros)">
+<div class="grid2" style="margin-top:10px;"><input placeholder="Tipo de presenteado"><input placeholder="Quantidade"></div>
+<button class="addbtn">+ Adicionar outro grupo</button>
+
+<p class="block">Personalização</p>
+<label style="font-size:13px; color:#6B7280;">A logomarca permite aplicação em monocromia?</label>
+<div class="radios"><label><input type="radio" name="mono" style="width:auto;"> Sim</label><label><input type="radio" name="mono" style="width:auto;"> Não</label><label><input type="radio" name="mono" style="width:auto;"> Não sei</label></div>
+
+<p class="block">Orçamento</p>
+<label style="font-size:13px; color:#6B7280;">Já existe um orçamento definido para essa ação?</label>
+<div class="radios"><label><input type="radio" name="budget" style="width:auto;"> Sim</label><label><input type="radio" name="budget" style="width:auto;"> Não</label><input placeholder="Valor aproximado (opcional)" style="flex:1;"></div>
+
+<textarea placeholder="Algo mais que queira nos contar sobre essa ação" style="margin-top:16px;"></textarea>
+<button class="btn">Enviar para consultoria</button>
+</body>
+</html>

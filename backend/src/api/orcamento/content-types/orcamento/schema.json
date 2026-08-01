@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orcamentos",
+  "info": {
+    "singularName": "orcamento",
+    "pluralName": "orcamentos",
+    "displayName": "Orçamento (carrinho consolidado)",
+    "description": "Envio do carrinho de orçamento (fluxo 2) — ver planejamento-inprint.md, seção 4.2. IMPORTANTE: restringir permissões públicas a 'create' apenas — leitura é só para o painel admin."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "empresa": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "telefone": {
+      "type": "string",
+      "required": true
+    },
+    "localEntrega": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "text"
+    },
+    "itens": {
+      "type": "component",
+      "component": "orcamento.item",
+      "repeatable": true
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_term": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    }
+  }
+}

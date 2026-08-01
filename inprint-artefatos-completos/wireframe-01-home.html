@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Wireframe — Home</title>
+<style>
+body{font-family:Arial,sans-serif; color:#1F2937; max-width:900px; margin:0 auto; padding:20px;}
+.bar{display:flex; justify-content:space-between; padding:6px 12px; border-bottom:1px solid #E5E7EB; font-size:12px; color:#6B7280;}
+.header{display:flex; justify-content:space-between; align-items:center; padding:14px 12px; border-bottom:1px solid #E5E7EB;}
+.logo{display:flex; align-items:center; gap:8px;}
+.logo .sq{width:32px; height:32px; border-radius:8px; background:#4F9D96;}
+.nav{display:flex; gap:18px; font-size:13px; color:#6B7280;}
+.btn{background:#0F4C5C; color:#fff; border:none; font-size:13px; padding:8px 14px;}
+.hero{display:grid; grid-template-columns:1.1fr 1fr; gap:24px; padding:32px 12px; align-items:center;}
+.hero h1{font-size:20px; font-weight:500; margin:0 0 8px;}
+.hero p{font-size:14px; color:#6B7280; margin:0 0 16px;}
+.placeholder{border:1px dashed #D1D5DB; display:flex; align-items:center; justify-content:center; font-size:12px; color:#9CA3AF;}
+.dif{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:0 12px 28px; text-align:center; font-size:12px; color:#6B7280;}
+.section-title{font-size:13px; font-weight:600; padding:0 12px; margin:0 0 8px;}
+.grid6{display:grid; grid-template-columns:repeat(6,1fr); gap:8px; padding:0 12px 24px;}
+.cell{border:1px solid #E5E7EB; border-radius:8px; padding:12px 4px; text-align:center; font-size:11px; color:#6B7280;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 12px 28px;}
+.card{border:1px solid #E5E7EB; border-radius:12px; padding:10px;}
+.card .placeholder{height:70px; margin-bottom:8px;}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:16px 12px; background:#F9FAFB; margin:0 12px 24px; border-radius:12px; text-align:center;}
+.stats p{margin:0; font-size:11px; color:#6B7280;}
+.stats .num{font-size:18px; font-weight:500; color:#1F2937;}
+.cta{text-align:center; padding:24px 12px; background:#0F4C5C; margin:0 12px 24px; border-radius:12px; color:#fff;}
+.footer{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:16px 12px; border-top:1px solid #E5E7EB; font-size:12px; color:#6B7280;}
+</style>
+</head>
+<body>
+<div class="bar"><span>(19) 0000-0000 &nbsp; WhatsApp</span><span>Atendemos todo o Brasil</span></div>
+<div class="header">
+<div class="logo"><div class="sq"></div><span style="font-weight:500;">In Print</span></div>
+<div class="nav"><span>Categorias ▾</span><span>Ocasiões ▾</span><span>Kits especiais</span><span>Como funciona</span><span>Blog</span></div>
+<button class="btn">Solicitar orçamento</button>
+</div>
+<div class="hero">
+<div><h1>Brindes personalizados para eventos e empresas</h1><p>Prazo garantido, personalização sob medida e flexibilidade no pagamento.</p><button class="btn">Solicitar orçamento</button></div>
+<div class="placeholder" style="height:160px;">Imagem hero</div>
+</div>
+<div class="dif"><div>Prazo garantido</div><div>Personalização real</div><div>Qualidade</div><div>Pagamento flexível</div></div>
+<p class="section-title">Navegue por categoria</p>
+<div class="grid6"><div class="cell">Canetas</div><div class="cell">Copos</div><div class="cell">Mochilas</div><div class="cell">Escritório</div><div class="cell">Vestuário</div><div class="cell">Ver todas</div></div>
+<p class="section-title">Navegue por ocasião</p>
+<div class="grid6"><div class="cell">Boas-vindas</div><div class="cell">SIPAT</div><div class="cell">Feiras</div><div class="cell">Aniversário</div><div class="cell">Fim de ano</div><div class="cell">Ver todas</div></div>
+<p class="section-title">Kits especiais</p>
+<div class="grid3">
+<div class="card"><div class="placeholder">Imagem</div>Kit onboarding</div>
+<div class="card"><div class="placeholder">Imagem</div>Kit churrasco</div>
+<div class="card"><div class="placeholder">Imagem</div>Kit café</div>
+</div>
+<div class="stats"><div><p class="num">+X mil</p><p>Clientes atendidos</p></div><div><p class="num">+X anos</p><p>De mercado</p></div><div><p class="num">100%</p><p>Personalizável</p></div><div><p class="num">98%</p><p>Satisfação</p></div></div>
+<p class="section-title">Dicas do blog</p>
+<div class="grid3">
+<div class="card"><div class="placeholder" style="height:60px;">Imagem</div>Ideias para SIPAT</div>
+<div class="card"><div class="placeholder" style="height:60px;">Imagem</div>Brindes para feiras</div>
+<div class="card"><div class="placeholder" style="height:60px;">Imagem</div>Kit onboarding</div>
+</div>
+<div class="cta"><p>Pronto para personalizar o brinde da sua empresa?</p><button class="btn" style="background:#fff; color:#0F4C5C;">Solicitar orçamento</button></div>
+<div class="footer"><div>Institucional<br>Sobre nós<br>Como funciona</div><div>Categorias<br>Ver todas</div><div>Contato<br>Telefone<br>WhatsApp<br>E-mail</div><div>Newsletter<br>Cadastre-se</div></div>
+</body>
+</html>

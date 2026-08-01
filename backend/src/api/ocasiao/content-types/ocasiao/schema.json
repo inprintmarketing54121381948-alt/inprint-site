@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ocasioes",
+  "info": {
+    "singularName": "ocasiao",
+    "pluralName": "ocasioes",
+    "displayName": "Ocasião",
+    "description": "Landing page por ocasião (SIPAT, fim de ano, feiras...) — ver especificacao-tecnica.md, seção 3"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nome",
+      "required": true
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "produtosSugeridos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::produto.produto",
+      "inversedBy": "ocasioes"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_orcamento_itens",
+  "info": {
+    "displayName": "Item de orçamento",
+    "description": "Um produto dentro de um pedido de orçamento consolidado (fluxo 2 do planejamento)"
+  },
+  "options": {},
+  "attributes": {
+    "produtoId": {
+      "type": "integer"
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "codigo": {
+      "type": "string"
+    },
+    "imagemUrl": {
+      "type": "string"
+    },
+    "quantidade": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "observacaoPersonalizacao": {
+      "type": "text"
+    }
+  }
+}

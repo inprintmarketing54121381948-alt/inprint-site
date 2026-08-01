@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "leads_consultoria",
+  "info": {
+    "singularName": "lead-consultoria",
+    "pluralName": "leads-consultoria",
+    "displayName": "Lead de consultoria",
+    "description": "Envio do formulário de consultoria (fluxo 1) — ver planejamento-inprint.md, seção 4.1. IMPORTANTE: restringir permissões públicas a 'create' apenas — leitura é só para o painel admin."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "empresa": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "telefone": {
+      "type": "string",
+      "required": true
+    },
+    "siteEmpresa": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "outrasRedes": {
+      "type": "string"
+    },
+    "tipoAcao": {
+      "type": "string"
+    },
+    "dataEvento": {
+      "type": "date"
+    },
+    "localEntrega": {
+      "type": "string"
+    },
+    "presenteados": {
+      "type": "component",
+      "component": "consultoria.presenteado",
+      "repeatable": true
+    },
+    "monocromia": {
+      "type": "enumeration",
+      "enum": ["sim", "não", "não sei"],
+      "default": "não sei"
+    },
+    "orcamentoDefinido": {
+      "type": "enumeration",
+      "enum": ["sim", "não"],
+      "default": "não"
+    },
+    "valorAproximado": {
+      "type": "string"
+    },
+    "observacoes": {
+      "type": "text"
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_term": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    }
+  }
+}

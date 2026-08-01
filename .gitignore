@@ -1,0 +1,26 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node / builds (frontend e backend têm seus próprios .gitignore também)
+node_modules/
+.next/
+dist/
+build/
+
+# Strapi
+backend/.tmp/
+backend/.cache/
+backend/public/uploads/
+
+# Env — nunca commitar segredos reais, só os .env.example
+.env
+.env.local
+.env.*.local
