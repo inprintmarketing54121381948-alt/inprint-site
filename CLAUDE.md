@@ -40,6 +40,17 @@ de orçamento, formulário de consultoria), para manter consistência independen
 - **Integrações pendentes**: requisitos de SEO orgânico (distintos dos requisitos de Google Ads, que
   já estão implementados), upload real de logomarca para o R2 na finalização do orçamento (hoje só
   guarda o nome do arquivo — ver TODO em `frontend/src/app/produtos/[slug]/ProdutoDetalheClient.tsx`).
+- **`frontend/.env.local`**: existe localmente (gitignorado, não commitado) com URLs/e-mails/WhatsApp
+  já preenchidos, mas `STRAPI_API_TOKEN` e `RESEND_API_KEY` ainda estão em branco — até serem
+  preenchidos, os formulários de consultoria e orçamento respondem normalmente na tela mas **não
+  gravam no Strapi nem disparam e-mail** (fallback silencioso, só loga aviso no console).
+- **Git**: primeiro commit feito em 2026-07-29 (`2e67145`), identidade configurada só neste
+  repositório (não `--global`). Ainda sem repositório remoto (GitHub) — ver contas-e-acessos.md.
+- **Cópia adicional do projeto**: existe uma cópia sincronizada manualmente em
+  `\\192.168.0.10\dmsantos\Documentos\InPrint` (exportada via `git archive` + cópia de `.git`, sem
+  `node_modules`/`.env`). Essa cópia **não se atualiza sozinha** — precisa ser re-sincronizada
+  manualmente sempre que este repositório mudar; ver [historico-do-projeto.md](historico-do-projeto.md),
+  seção 8.
 
 ## Estrutura de arquivos
 
@@ -47,6 +58,7 @@ de orçamento, formulário de consultoria), para manter consistência independen
 planejamento-inprint.md              # fonte da verdade: briefing, identidade, fluxos, sitemap, checklist
 especificacao-tecnica.md             # stack decidida: Next.js, Strapi, hospedagem, tracking de Google Ads
 contas-e-acessos.md                  # contas reais já criadas (domínio, WhatsApp, e-mails, Google Ads/GA4)
+plano-de-desenvolvimento.md          # cronograma por fases/marcos até o lançamento, com dependências e critérios de conclusão
 historico-do-projeto.md              # registro narrativo da conversa/decisões — complementar, não é fonte da verdade
 inprint-prototipo.html               # protótipo navegável (referência visual — não é a base de código final)
 291760810_..._n.jpg                  # imagem de referência do logo original (boho/aquarela, pré-evolução)

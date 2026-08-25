@@ -182,7 +182,7 @@ Um **protótipo navegável em HTML** (`inprint-prototipo.html`) conecta todas es
 - [x] Scaffolding do projeto — `frontend/` (Next.js) e `backend/` (Strapi) criados, ver CLAUDE.md
 
 **Gestão**
-- [ ] Cronograma com marcos definido
+- [x] Cronograma com marcos definido — ver [plano-de-desenvolvimento.md](plano-de-desenvolvimento.md)
 - [ ] Responsáveis por aprovação definidos
 
 ## 8. Próximos passos sugeridos

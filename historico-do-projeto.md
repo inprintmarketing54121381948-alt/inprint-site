@@ -185,9 +185,37 @@ RAM livre antes de assumir que é bug de código.
 
 - Frontend e backend rodando localmente (`npm run dev` / `npm run develop`), acessíveis em
   `http://localhost:3000` e `http://localhost:1337/admin`.
-- **Nada foi commitado no git ainda** — só estruturado no disco. Para abrir em outra máquina de
-  verdade, é necessário commitar (e idealmente subir para um repositório remoto no GitHub, que ainda
-  não foi criado — ver `contas-e-acessos.md`, seção 1).
 - Catálogo do Strapi está vazio — páginas do site mostram "em preparação" até haver conteúdo real.
 - Conteúdo institucional (textos, fotos, depoimentos, CNPJ, endereço, políticas) continua pendente —
   ver checklist "Conteúdo" em `planejamento-inprint.md`, seção 7.
+
+## 8. Commit local e transferência para outra máquina
+
+O cliente pediu pra comitar localmente. O git não tinha identidade configurada nesta máquina; em vez
+de usar `--global` (evitado por padrão), configuramos a identidade **só neste repositório**
+(`user.name "Delano"`, `user.email "projetos.delano@gmail.com"`). Primeiro commit criado:
+`2e67145 — Scaffold inicial do site In Print (Next.js + Strapi)`, 121 arquivos.
+
+Em seguida o cliente pediu para transferir o projeto para a pasta de rede
+`\\192.168.0.10\dmsantos\Documentos\InPrint`. Feito com `git archive HEAD | tar -x` (exporta
+exatamente a árvore versionada, sem `node_modules`/`.env`/build) mais uma cópia bruta da pasta `.git`
+por cima, pra levar o histórico de commits junto. Confirmado que os dois lados batem (121 arquivos,
+204 objetos git). Aviso dado: não rodar `npm install`/dev direto pela rede — copiar para disco local
+na outra máquina antes, pelo mesmo motivo dos travamentos que tivemos aqui (ver seção 6); e que ao
+abrir o repositório copiado, o git provavelmente vai reclamar de "dubious ownership" (proteção padrão
+pra pastas de rede) — resolve-se com `git config --global --add safe.directory <caminho>` **na outra
+máquina**, não nesta.
+
+### Descoberta: frontend não tinha `.env` real
+
+O cliente perguntou por que não havia `.env` no frontend. Resposta: o `frontend/.env.example` sempre
+existiu, mas nunca virou um `.env.local` real — o site funcionava mesmo assim porque `lib/cms.ts`,
+`lib/notificacoes.ts` e `lib/strapi-write.ts` foram escritos com fallback silencioso (loga aviso no
+console e segue) quando faltam `STRAPI_API_TOKEN`/`RESEND_API_KEY`. Consequência prática: os dois
+formulários (consultoria e orçamento) **aparentam funcionar na tela, mas não gravam nada no Strapi nem
+disparam e-mail** até essas duas variáveis existirem de verdade.
+
+Criado `frontend/.env.local` (gitignorado, não commitado, não vai para a cópia de rede) com os valores
+já conhecidos (URLs locais do Strapi, e-mails, número de WhatsApp) e `STRAPI_API_TOKEN`/
+`RESEND_API_KEY`/`NEXT_PUBLIC_GTM_ID` em branco — a preencher quando o token do Strapi for gerado no
+painel admin e as contas Resend/GTM existirem (ver `contas-e-acessos.md`).
