@@ -33,16 +33,17 @@ em serviços de terceiros por você.
 - [x] **E-mail remetente do Resend:** `contato@inprintpersonalizados.com.br` — domínio verificado via
   DNS (TXT/CNAME/MX no subdomínio `send`) em 2026-08-26, envio via Resend funcionando independente de
   caixa de entrada.
-  - **Recebimento — decisão revista em 2026-08-26:** ao configurar o Resend, a exportação da zona DNS
-    revelou que o domínio já tem **Microsoft 365 ativo** (MX raiz apontando pra
+  - **Recebimento — decisão revista duas vezes:** ao configurar o Resend (2026-08-26), a exportação da
+    zona DNS revelou que o domínio já tem **Microsoft 365 ativo** (MX raiz apontando pra
     `*.mail.protection.outlook.com`, registros de autodiscover/Lync, e a caixa `vendas@` já funcionando
-    ali). Isso invalida o plano anterior de "sem Workspace, encaminhamento GoDaddy → Gmail" — já que o
-    M365 está pago e ativo mesmo assim, decidido **criar `contato@inprintpersonalizados.com.br` como
-    caixa real dentro desse mesmo M365** (mais simples e profissional que encaminhamento, sem custo
-    adicional). *Pendente:* criar essa caixa no admin do Microsoft 365 (fora do meu escopo — quem tem
-    acesso admin ao tenant faz isso diretamente).
-  - A conta Gmail `inprint.marketing54121381948@gmail.com` deixa de ser destino de encaminhamento de
-    e-mail — segue só com os papéis de Google Ads/GA4 (ver seção 4).
+    ali). Isso levou a uma primeira revisão do plano — criar `contato@` como caixa real no M365 — mas
+    depois o próprio cliente confirmou que **cada caixa nova no M365 custa ~R$30/mês**, o que não é
+    custo zero como presumido. Como o orçamento aprovado só cobre o Railway (~R$25-35/mês, ver
+    CLAUDE.md), **voltamos ao plano original**: `contato@inprintpersonalizados.com.br` continua sendo
+    **encaminhamento gratuito da GoDaddy** para a conta Gmail `inprint.marketing54121381948@gmail.com`
+    — sem custo adicional. *Pendente:* configurar de fato esse encaminhamento no painel da GoDaddy.
+  - A conta Gmail `inprint.marketing54121381948@gmail.com` volta a ser o destino do encaminhamento de
+    `contato@`, além dos papéis de Google Ads/GA4 (ver seção 4).
 
 ## 3. Acesso que você precisa me dar (quando chegarmos na etapa de deploy)
 
@@ -60,9 +61,9 @@ em serviços de terceiros por você.
     Ads nova.
 - [x] **Conta Google Analytics (GA4)** — mesma conta `inprint.marketing54121381948@gmail.com` (facilita
   o link GA4↔Ads).
-- Essa mesma conta Gmail acumula dois papéis: dona da conta Google Ads nova e dona do GA4 (o papel de
-  destino de encaminhamento de `contato@` foi descartado em 2026-08-26 — ver seção 2). Ainda assim,
-  recomendo ativar verificação em duas etapas (2FA) nela, já que controla Ads + GA4.
+- Essa mesma conta Gmail acumula três papéis: destino do encaminhamento de `contato@`, dona da conta
+  Google Ads nova e dona do GA4 (ver seção 2 para o histórico dessa decisão, revista duas vezes).
+  Recomendo ativar verificação em duas etapas (2FA) nela, já que controla e-mail + Ads + GA4.
 - **Google Tag Manager** — container novo, criado junto com o projeto (não depende de nada prévio).
 - **Google Search Console** — recomendado abrir também (verificação de propriedade do domínio via DNS
   TXT na GoDaddy), útil tanto para SEO orgânico quanto para diagnosticar indexação.
@@ -89,17 +90,19 @@ do site, não só "conteúdo":
   - E-mail definido: `inprint.marketing54121381948@gmail.com`.
 
 - [x] **Provedor de e-mail para `contato@inprintpersonalizados.com.br`** — decisão original
-  (2026-07-29: encaminhamento gratuito da GoDaddy para Gmail, para evitar custo de Workspace)
-  **revista em 2026-08-26**: o domínio já tem Microsoft 365 ativo e pago (usado por `vendas@`), então
-  ficou decidido criar `contato@` como caixa real nesse mesmo M365 em vez de encaminhamento — sem
-  custo adicional, já que a assinatura já existe. Pendente: quem administra o tenant M365 criar a
-  caixa.
+  (2026-07-29: encaminhamento gratuito da GoDaddy para Gmail, para evitar custo de Workspace) foi
+  brevemente revista em 2026-08-26 pra virar caixa real no M365 (ao descobrir que o domínio já tinha
+  M365 ativo), mas **voltou ao plano original no mesmo dia** ao confirmar que cada caixa nova no M365
+  custa ~R$30/mês — custo não aprovado, fora do orçamento (só o Railway está aprovado como custo
+  recorrente). Decisão final: encaminhamento gratuito GoDaddy → Gmail, R$ 0,00/mês. Pendente:
+  configurar o encaminhamento de fato no painel da GoDaddy.
 
 ## 7. Status
 
-Domínio, WhatsApp, e-mail de notificação (`vendas@`, confirmado ativo em M365), domínio verificado no
-Resend para envio, e a conta Google Ads/GA4 (`inprint.marketing54121381948@gmail.com`, nova, no CNPJ
-correto) já estão confirmados. Falta: criar a caixa `contato@` no M365, criar a conta Google Ads
-dentro do Gmail de marketing, e as contas de Railway/Resend (Resend em andamento — domínio já
-verificado, falta gerar a API key) e a habilitação do R2 (adiada por falta de cartão no momento).
-GitHub, Vercel e Cloudflare (conta, sem R2 habilitado) já criados.
+Domínio, WhatsApp, e-mail de notificação (`vendas@`, confirmado ativo em M365), domínio verificado e
+testado de ponta a ponta no Resend para envio, e a conta Google Ads/GA4
+(`inprint.marketing54121381948@gmail.com`, nova, no CNPJ correto) já estão confirmados. GitHub, Vercel,
+Cloudflare (conta, sem R2 habilitado) e Resend já criados e funcionando. Falta: configurar de fato o
+encaminhamento `contato@` → Gmail no painel da GoDaddy, criar a conta Google Ads dentro do Gmail de
+marketing, habilitar o R2 (adiado por falta de cartão) e criar a conta Railway (adiada de propósito
+para perto do lançamento).
