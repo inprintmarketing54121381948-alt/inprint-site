@@ -219,3 +219,117 @@ Criado `frontend/.env.local` (gitignorado, não commitado, não vai para a cópi
 já conhecidos (URLs locais do Strapi, e-mails, número de WhatsApp) e `STRAPI_API_TOKEN`/
 `RESEND_API_KEY`/`NEXT_PUBLIC_GTM_ID` em branco — a preencher quando o token do Strapi for gerado no
 painel admin e as contas Resend/GTM existirem (ver `contas-e-acessos.md`).
+
+## 9. Sessão de 2026-08-26 — infraestrutura, integrações, conteúdo
+
+Sessão longa cobrindo as Fases 0, 1 e 2 do `plano-de-desenvolvimento.md` (documento criado nesta
+mesma sessão, ver seção 10) e o início da Fase 3. Nota de contexto que virou relevante durante a
+sessão: **esta máquina roda vários projetos simultâneos não relacionados** (EasyPark, Digitalizador
+de Fotos, e um processo chamado "ArqPromptLab" já ocupando a porta 3000) — o aviso antigo de "RAM
+muito limitada" na seção 6 está desatualizado, a máquina tem 250GB+ de RAM hoje.
+
+### Fase 0 — Git e GitHub
+
+O `git status` mostrava **110 arquivos modificados/novos não commitados** (praticamente todo o
+scaffolding de frontend/backend descrito no CLAUDE.md, nunca commitado depois do primeiro commit
+`2e67145`). Revisado que nenhum `.env` real estava sendo incluído, commitado (`ba70632`).
+
+O cliente contou que tinha perdido acesso às contas criadas anteriormente e pediu pra recriar tudo do
+zero — mas antes disso, decidiu tentar recuperar o acesso primeiro. Conseguiu recuperar a Gmail
+`inprint.marketing54121381948@gmail.com` e a partir dela criou/confirmou o GitHub
+(`inprintmarketing54121381948-alt`). Criado o repositório privado `inprint-site` nesse GitHub.
+
+Autenticação resolvida via **chave SSH** gerada nesta máquina (sem senha, só uso local) — o cliente
+colou a chave pública em GitHub → SSH Keys. `git push` inicialmente bloqueado pelo classificador do
+modo automático (ação de "afeta estado compartilhado"); resolvido criando
+`.claude/settings.local.json` (o próprio cliente criou o arquivo, já que escrever regras de permissão
+também é uma ação sensível para o classificador) com `Bash(git push:*)` liberado. Push feito com
+sucesso; código no ar no GitHub.
+
+### Fase 1 — Contas de infraestrutura
+
+- **GitHub**: recuperado (não recriado), repositório `inprint-site` criado e sincronizado.
+- **Vercel**: conta criada (usuário `inprintmarketing54121381948`), projeto conectado ao repositório
+  (Root Directory = `frontend/`, já que é um monorepo). Primeiro deploy **falhou**: build travava 60s
+  x3 gerando `/categorias` estaticamente porque `fetchFromStrapi` em `frontend/src/lib/cms.ts` não
+  tinha timeout — no sandbox de build da Vercel, uma conexão para o fallback `localhost:1337` fica
+  pendurada em vez de falhar rápido (diferente do comportamento local). Corrigido adicionando
+  `signal: AbortSignal.timeout(8000)` ao fetch. Redeploy funcionou — site no ar em
+  `inprint-site-zeta.vercel.app`, mostrando corretamente os placeholders "em preparação" (catálogo
+  ainda vazio).
+- **Cloudflare**: conta criada. Confirmado que **habilitar o R2 pede cartão de crédito mesmo no free
+  tier** — o cliente não tinha cartão disponível no momento, então o R2 ficou **adiado de propósito**
+  (o backend já cai automaticamente no disco local sem as variáveis `R2_*`, então isso não bloqueia
+  nada em dev).
+- **Resend**: conta criada, domínio `inprintpersonalizados.com.br` verificado via DNS (DKIM TXT, SPF
+  MX+TXT e DMARC no subdomínio `send`, registros colados na GoDaddy pelo cliente). API key gerada e
+  colada em `frontend/.env.local`. Testado de ponta a ponta: POST em `/api/consultoria` e
+  `/api/orcamento` disparando e-mails reais, entrega confirmada no painel do Resend.
+- **Railway**: deliberadamente adiado para perto do lançamento (único custo recorrente aprovado,
+  ~R$25-35/mês) — decisão consciente do cliente, não pendência esquecida.
+
+### Descoberta: Microsoft 365 já ativo no domínio (e duas reviravoltas na decisão de `contato@`)
+
+Ao exportar a zona DNS da GoDaddy pra colar os registros do Resend, apareceu um MX raiz apontando
+pra `*.mail.protection.outlook.com` mais registros de autodiscover/Lync — o domínio já tinha
+**Microsoft 365 ativo**, não documentado antes. O cliente confirmou que `vendas@` é uma caixa real
+nesse M365, já em uso.
+
+Isso invalidou o plano original de `contato@` (encaminhamento grátis GoDaddy → Gmail, pensado pra
+evitar custo de Workspace) — decidido no mesmo dia criar `contato@` como caixa real nesse M365, já
+que a assinatura "já existia mesmo assim".
+
+**Primeira reviravolta:** o cliente avisou que cada caixa nova no M365 custa **~R$30/mês** — não é
+grátis como presumido. Como o único custo recorrente aprovado é o Railway, a decisão voltou pro plano
+original (encaminhamento GoDaddy → Gmail).
+
+**Segunda reviravolta:** ao pesquisar como configurar esse encaminhamento, descoberto que
+**GoDaddy Email Forwarding e o MX customizado do M365 não coexistem no mesmo domínio** (MX é por
+domínio, não por endereço — ativar o encaminhamento da GoDaddy quebraria o recebimento em `vendas@`).
+Alternativa proposta (ainda não confirmada, fica pendente): criar `contato@` como **alias ou caixa
+compartilhada dentro do mesmo tenant M365** — recurso tipicamente gratuito nos planos M365 Business
+(não é uma licença/usuário novo), mas precisa ser confirmado por quem administra o painel do M365
+(fora do meu acesso).
+
+### Fase 2 — Integrações validadas de ponta a ponta
+
+- Rodado o Strapi localmente pela primeira vez nesta máquina. Achado um bug real: `.gitignore`
+  ignorava a pasta `backend/public/uploads/` **inteira**, então ela nunca existe depois de um clone
+  novo — e o Strapi trava na inicialização sem ela (provider de upload local exige a pasta). Corrigido
+  com o padrão `.gitkeep` (ignora só o conteúdo).
+- Cliente criou o primeiro admin do Strapi, gerou API token (`frontend-dev`, full access), colado em
+  `frontend/.env.local`.
+- Configurada a role **Public** do plugin Users & Permissions: leitura habilitada em
+  Produto/Categoria/Ocasião/Kit/Post; confirmado por teste direto na API que Lead de
+  consultoria/Orçamento retornam `403` (não públicos, como deveria ser).
+- Testado de ponta a ponta: submissões reais em `/api/consultoria` e `/api/orcamento` gravando de
+  verdade no Strapi (confirmado no Content Manager) e disparando e-mail via Resend.
+- **Implementado o upload real de logomarca** (TODO conhecido desde o scaffolding): nova rota
+  `/api/upload-logo` repassa o arquivo pro endpoint de upload do Strapi (usa disco local hoje, muda
+  pra R2 automaticamente quando essa conta for retomada, sem mudar código). `ItemOrcamento` ganhou
+  campo `logoUrl`; carrinho mostra link pra logo enviada; e-mail de notificação do orçamento inclui a
+  URL no resumo do item. Testado com upload real (arquivo de teste chegou no Strapi e ficou acessível
+  pela URL retornada).
+- Corrigido bug pequeno: `notificarEquipe` não checava se a resposta do Resend era `ok`, falhando
+  silenciosamente em caso de erro — agora loga a falha.
+- Nota de processo: durante os reinícios do servidor local, um `curl localhost:3000` acabou batendo
+  num projeto completamente diferente ("ArqPromptLab", rodando como processo separado nesta máquina
+  compartilhada) — daí em diante o frontend do In Print passou a rodar numa porta dedicada (3555) pra
+  evitar esse tipo de confusão.
+
+### Fase 3 (início) — briefing de conteúdo
+
+Criado `briefing-conteudo.md` (roteiro do que pedir ao cliente: dados institucionais, textos,
+políticas, prova social, fotos, catálogo de produtos, refinamento do formulário de consultoria) e uma
+versão em **PDF** pronta pra envio direto à equipe da In Print (`inprint-levantamento-conteudo.pdf`,
+sem menções internas a "cliente"/fases do projeto, com a paleta e tipografia da marca).
+
+Confirmado também que `inprintpersonalizados.com.br` ainda mostra a página padrão de domínio
+parqueado da GoDaddy (não a Vercel) — esperado, já que o corte de DNS é passo da Fase 7. O cliente
+confirmou que prefere esperar essa fase em vez de apontar o domínio agora.
+
+### Documentos novos desta sessão
+
+- `plano-de-desenvolvimento.md` — cronograma por fases com dependências e critérios de conclusão
+  (preenche a lacuna "Cronograma com marcos definido" do checklist em `planejamento-inprint.md`).
+- `briefing-conteudo.md` + `inprint-levantamento-conteudo.pdf` — briefing de conteúdo pra Fase 3.

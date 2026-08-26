@@ -17,40 +17,51 @@ de orçamento, formulário de consultoria), para manter consistência independen
 
 ## Estado atual
 
+Ver [plano-de-desenvolvimento.md](plano-de-desenvolvimento.md) para o cronograma completo por fases —
+Fases 0, 1 e 2 (fundação de código, contas de infraestrutura, integrações) estão **concluídas** desde
+2026-08-26. Resumo:
+
 - **Descoberta, identidade visual, fluxos de conversão e sitemap**: definidos e aprovados pelo cliente.
-- **Wireframes e protótipo navegável em HTML/CSS/JS puro** (sem framework): prontos, em
-  [inprint-artefatos-completos/](inprint-artefatos-completos/) e na raiz ([inprint-prototipo.html](inprint-prototipo.html)).
-  Esses arquivos são material de referência/prova de conceito, não a base de código final.
-- **Conteúdo real** (textos institucionais, fotos de produtos, depoimentos, números de prova social,
-  políticas/LGPD): pendente — ver seção 7 do planejamento.
-- **Plataforma/tecnologia do site final**: **definida** em 2026-07-29 — Next.js (frontend) + Strapi
-  self-hosted (CMS/backend), Vercel (hosting frontend), Railway (hosting Strapi), Cloudflare R2
-  (upload de logomarca), Resend (e-mail), link `wa.me` (notificação WhatsApp), domínio já registrado
-  na GoDaddy. Detalhes completos, modelagem de conteúdo e requisitos de Google Ads/tracking em
-  [especificacao-tecnica.md](especificacao-tecnica.md) — leia esse arquivo antes de qualquer
-  scaffolding.
-- **Scaffolding do código**: **feito** em 2026-07-29 — `frontend/` (Next.js) e `backend/` (Strapi)
-  criados e funcionando localmente (build do frontend passa limpo; Strapi sobe sem erro de schema).
-  Ver [contas-e-acessos.md](contas-e-acessos.md) para as contas reais (domínio, WhatsApp, e-mails,
-  Google Ads/GA4) já usadas no código (placeholders reais, não fictícios).
-- **Conteúdo do catálogo**: Strapi ainda está vazio (nenhum produto/categoria/ocasião cadastrado) —
-  as páginas do frontend mostram estado "em preparação" até isso ser cadastrado no painel admin.
-- **Deploy real**: ainda não feito — GitHub/Vercel/Railway/Cloudflare R2/Resend ainda precisam ser
-  criados e conectados (ver contas-e-acessos.md, seção 1).
-- **Integrações pendentes**: requisitos de SEO orgânico (distintos dos requisitos de Google Ads, que
-  já estão implementados), upload real de logomarca para o R2 na finalização do orçamento (hoje só
-  guarda o nome do arquivo — ver TODO em `frontend/src/app/produtos/[slug]/ProdutoDetalheClient.tsx`).
-- **`frontend/.env.local`**: existe localmente (gitignorado, não commitado) com URLs/e-mails/WhatsApp
-  já preenchidos, mas `STRAPI_API_TOKEN` e `RESEND_API_KEY` ainda estão em branco — até serem
-  preenchidos, os formulários de consultoria e orçamento respondem normalmente na tela mas **não
-  gravam no Strapi nem disparam e-mail** (fallback silencioso, só loga aviso no console).
-- **Git**: primeiro commit feito em 2026-07-29 (`2e67145`), identidade configurada só neste
-  repositório (não `--global`). Ainda sem repositório remoto (GitHub) — ver contas-e-acessos.md.
+- **Wireframes e protótipo navegável em HTML/CSS/JS puro**: prontos, em
+  [inprint-artefatos-completos/](inprint-artefatos-completos/) e na raiz ([inprint-prototipo.html](inprint-prototipo.html))
+  — referência visual, não é a base de código final.
+- **Stack e scaffolding**: Next.js + Strapi, criados e funcionando (ver
+  [especificacao-tecnica.md](especificacao-tecnica.md)).
+- **Git/GitHub**: repositório privado `inprint-site` (GitHub `inprintmarketing54121381948-alt`) criado,
+  código commitado e sincronizado via SSH. `git push` liberado sem prompt via
+  `.claude/settings.local.json` (gitignorado, não commitado).
+- **Contas de infraestrutura**: GitHub, Vercel, Cloudflare (conta) e Resend criadas e funcionando —
+  ver [contas-e-acessos.md](contas-e-acessos.md) para detalhes/status de cada uma. Railway e a
+  habilitação do R2 (pede cartão de crédito) foram **adiados de propósito**, não esquecidos — o
+  backend cai automaticamente no disco local sem R2 configurado.
+- **Deploy do frontend**: já no ar em `inprint-site-zeta.vercel.app` (Vercel conectada ao GitHub,
+  deploy automático a cada push). O domínio real `inprintpersonalizados.com.br` **ainda não** aponta
+  pra lá de propósito — ainda mostra o parqueamento padrão da GoDaddy; o corte de DNS é passo da
+  Fase 7, adiado a pedido do cliente até o conteúdo estar pronto pra lançamento.
+- **Backend Strapi**: roda localmente (`npm run develop`, porta 1337). Admin criado, API token gerado,
+  role Public configurada (leitura só em Produto/Categoria/Ocasião/Kit/Post — **não** em
+  Lead-consultoria/Orçamento). `frontend/.env.local` tem `STRAPI_API_TOKEN` e `RESEND_API_KEY`
+  preenchidos — os dois fluxos de conversão (consultoria e carrinho de orçamento) foram testados de
+  ponta a ponta: gravam no Strapi, disparam e-mail via Resend, e o upload real de logomarca
+  (implementado em 2026-08-26, rota `/api/upload-logo`) funciona de verdade.
+- **Conteúdo do catálogo**: Strapi ainda está vazio (nenhum produto/categoria/ocasião cadastrado de
+  verdade) — as páginas do frontend mostram "em preparação" até isso ser cadastrado. Roteiro do que
+  pedir ao cliente em [briefing-conteudo.md](briefing-conteudo.md) (Fase 3, ainda não iniciada).
+- **E-mail `contato@inprintpersonalizados.com.br`**: decisão em aberto, ver
+  [contas-e-acessos.md](contas-e-acessos.md) seção 2/6 — GoDaddy Email Forwarding não é compatível com
+  o Microsoft 365 já ativo no domínio (MX é por domínio, não por endereço); alternativa proposta
+  (alias/caixa compartilhada no mesmo M365, tipicamente sem custo extra) ainda precisa ser confirmada
+  por quem administra o tenant.
+- **Integrações ainda pendentes**: requisitos de SEO orgânico (Fase 5, distintos do tracking de Google
+  Ads que já está implementado); contas Google Ads/GTM/Search Console ainda não criadas dentro da
+  Gmail `inprint.marketing54121381948@gmail.com` (Fase 4).
+- **Rodando localmente nesta máquina**: frontend numa porta dedicada (3555, não 3000/3010 — esta
+  máquina roda vários outros projetos simultâneos) e Strapi em 1337. Ver
+  [historico-do-projeto.md](historico-do-projeto.md), seção 9, para o porquê da porta dedicada.
 - **Cópia adicional do projeto**: existe uma cópia sincronizada manualmente em
   `\\192.168.0.10\dmsantos\Documentos\InPrint` (exportada via `git archive` + cópia de `.git`, sem
   `node_modules`/`.env`). Essa cópia **não se atualiza sozinha** — precisa ser re-sincronizada
-  manualmente sempre que este repositório mudar; ver [historico-do-projeto.md](historico-do-projeto.md),
-  seção 8.
+  manualmente; ver [historico-do-projeto.md](historico-do-projeto.md), seção 8.
 
 ## Estrutura de arquivos
 
@@ -60,6 +71,7 @@ especificacao-tecnica.md             # stack decidida: Next.js, Strapi, hospedag
 contas-e-acessos.md                  # contas reais já criadas (domínio, WhatsApp, e-mails, Google Ads/GA4)
 plano-de-desenvolvimento.md          # cronograma por fases/marcos até o lançamento, com dependências e critérios de conclusão
 briefing-conteudo.md                 # roteiro do que pedir ao cliente para a Fase 3 (textos, fotos, catálogo, políticas)
+inprint-levantamento-conteudo.pdf    # versão em PDF do briefing acima, pronta pra enviar direto à equipe da In Print
 historico-do-projeto.md              # registro narrativo da conversa/decisões — complementar, não é fonte da verdade
 inprint-prototipo.html               # protótipo navegável (referência visual — não é a base de código final)
 291760810_..._n.jpg                  # imagem de referência do logo original (boho/aquarela, pré-evolução)
