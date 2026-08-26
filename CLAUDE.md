@@ -59,6 +59,7 @@ planejamento-inprint.md              # fonte da verdade: briefing, identidade, f
 especificacao-tecnica.md             # stack decidida: Next.js, Strapi, hospedagem, tracking de Google Ads
 contas-e-acessos.md                  # contas reais já criadas (domínio, WhatsApp, e-mails, Google Ads/GA4)
 plano-de-desenvolvimento.md          # cronograma por fases/marcos até o lançamento, com dependências e critérios de conclusão
+briefing-conteudo.md                 # roteiro do que pedir ao cliente para a Fase 3 (textos, fotos, catálogo, políticas)
 historico-do-projeto.md              # registro narrativo da conversa/decisões — complementar, não é fonte da verdade
 inprint-prototipo.html               # protótipo navegável (referência visual — não é a base de código final)
 291760810_..._n.jpg                  # imagem de referência do logo original (boho/aquarela, pré-evolução)

@@ -188,6 +188,7 @@ Um **protótipo navegável em HTML** (`inprint-prototipo.html`) conecta todas es
 ## 8. Próximos passos sugeridos
 
 1. Refinar os campos do formulário de consultoria
-2. Roteiro de perguntas para o briefing de conteúdo (textos, números reais, fotos)
+2. ~~Roteiro de perguntas para o briefing de conteúdo (textos, números reais, fotos)~~ — feito, ver
+   [briefing-conteudo.md](briefing-conteudo.md)
 3. Especificação técnica (plataforma, integrações, upload de logo, notificações)
 4. Cronograma e aprovação final antes do desenvolvimento
