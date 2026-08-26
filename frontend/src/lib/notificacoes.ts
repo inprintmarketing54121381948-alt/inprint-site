@@ -26,7 +26,7 @@ export async function notificarEquipe(params: {
     <p><a href="${linkWhatsApp}">Abrir conversa no WhatsApp com o cliente</a></p>
   `;
 
-  await fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${RESEND_API_KEY}`,
@@ -39,4 +39,8 @@ export async function notificarEquipe(params: {
       html,
     }),
   });
+
+  if (!res.ok) {
+    console.error("Falha ao enviar notificação por e-mail:", await res.text());
+  }
 }

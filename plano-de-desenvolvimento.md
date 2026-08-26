@@ -16,8 +16,8 @@ Fontes: [especificacao-tecnica.md](especificacao-tecnica.md), [contas-e-acessos.
 
 | Fase | Objetivo | Status |
 |---|---|---|
-| 0 | Fundação de código versionada | 🔴 não iniciada |
-| 1 | Contas de infraestrutura e segredos | 🔴 não iniciada |
+| 0 | Fundação de código versionada | 🟢 concluída |
+| 1 | Contas de infraestrutura e segredos | 🟢 concluída (Railway e R2 adiados de propósito, ver notas) |
 | 2 | Integrações pendentes (upload real, e-mail) | 🟡 parcial (fallback silencioso ativo) |
 | 3 | Conteúdo institucional e catálogo real | 🔴 não iniciada |
 | 4 | Tracking/Google Ads de verdade | 🟡 código pronto, contas não criadas |
@@ -67,7 +67,11 @@ Hoje, segundo o CLAUDE.md, **nenhuma** conta de infraestrutura foi criada ainda.
 1. Vercel (login via GitHub) — grátis.
 2. Railway (login via GitHub, **precisa de cartão cadastrado**) — ~R$25-35/mês, único custo recorrente
    já aprovado pelo cliente.
-3. Cloudflare (para o R2 de upload de logomarca) — grátis até ~10GB.
+3. Cloudflare (para o R2 de upload de logomarca) — grátis até ~10GB. **Confirmado em 2026-08-26: o R2
+   pede cartão cadastrado mesmo no free tier**, igual ao Railway. Sem cartão disponível no momento —
+   adiado de propósito; o backend já cai automaticamente no disco local sem essa variável configurada
+   (ver `backend/config/plugins.ts`), então isso não bloqueia dev nem QA local, só a persistência de
+   upload em produção (fica pendente para perto da Fase 7).
 4. Resend (e-mail transacional) — grátis até ~3.000 e-mails/mês.
 5. Gerar as credenciais reais de cada serviço e preencher:
    - `frontend/.env.local` → `STRAPI_API_TOKEN` e `RESEND_API_KEY` (hoje em branco — é por isso que
