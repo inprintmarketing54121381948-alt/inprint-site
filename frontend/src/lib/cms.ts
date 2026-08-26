@@ -8,6 +8,7 @@ async function fetchFromStrapi<T>(path: string): Promise<T[]> {
   try {
     const res = await fetch(`${STRAPI_URL}/api/${path}`, {
       next: { revalidate: 60 },
+      signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) return [];
     const json = await res.json();
