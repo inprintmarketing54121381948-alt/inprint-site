@@ -82,6 +82,16 @@ export default function CarrinhoPage() {
               {item.observacaoPersonalizacao && (
                 <p className="text-xs text-gray-500">{item.observacaoPersonalizacao}</p>
               )}
+              {item.logoUrl && (
+                <a
+                  href={item.logoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-navy underline"
+                >
+                  Ver logomarca enviada
+                </a>
+              )}
             </div>
             <input
               type="number"

@@ -31,7 +31,9 @@ export async function POST(req: NextRequest) {
     ...utm,
   });
 
-  const resumoItens = itens.map((i) => `${i.quantidade}x ${i.nome} (${i.codigo})`);
+  const resumoItens = itens.map(
+    (i) => `${i.quantidade}x ${i.nome} (${i.codigo})${i.logoUrl ? ` — logo: ${i.logoUrl}` : ""}`
+  );
 
   await notificarEquipe({
     assunto: `Novo orçamento consolidado — ${empresa}`,

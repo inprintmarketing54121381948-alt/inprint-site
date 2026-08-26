@@ -18,7 +18,7 @@ Fontes: [especificacao-tecnica.md](especificacao-tecnica.md), [contas-e-acessos.
 |---|---|---|
 | 0 | Fundação de código versionada | 🟢 concluída |
 | 1 | Contas de infraestrutura e segredos | 🟢 concluída (Railway e R2 adiados de propósito, ver notas) |
-| 2 | Integrações pendentes (upload real, e-mail) | 🟡 parcial (fallback silencioso ativo) |
+| 2 | Integrações pendentes (upload real, e-mail) | 🟡 e-mail, gravação no Strapi e permissões da role Public validados (2026-08-26); falta só o upload real de logo pro R2 |
 | 3 | Conteúdo institucional e catálogo real | 🔴 não iniciada |
 | 4 | Tracking/Google Ads de verdade | 🟡 código pronto, contas não criadas |
 | 5 | SEO orgânico | 🔴 requisitos nem definidos |

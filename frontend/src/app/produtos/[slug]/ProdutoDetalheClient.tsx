@@ -4,21 +4,42 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import type { Produto } from "@/lib/types";
 
-// TODO: o arquivo de logo só é guardado como referência de nome no item do
-// carrinho (localStorage não serializa File). Upload real para o Cloudflare R2
-// precisa ser implementado como parte da finalização do orçamento (/carrinho),
-// não neste componente — ver especificacao-tecnica.md, seção 1.
 export function ProdutoDetalheClient({ produto }: { produto: Produto }) {
   const { adicionarItem } = useCart();
   const [quantidade, setQuantidade] = useState(produto.quantidadeMinima);
   const [corSelecionada, setCorSelecionada] = useState(produto.cores?.[0] ?? "");
   const [arquivoLogo, setArquivoLogo] = useState<File | null>(null);
+  const [enviandoLogo, setEnviandoLogo] = useState(false);
+  const [avisoUpload, setAvisoUpload] = useState<string | null>(null);
   const [adicionado, setAdicionado] = useState(false);
 
-  function handleAdicionar() {
+  async function handleAdicionar() {
+    let logoUrl: string | undefined;
+    let aviso: string | null = null;
+
+    if (arquivoLogo) {
+      setEnviandoLogo(true);
+      try {
+        const formData = new FormData();
+        formData.append("arquivo", arquivoLogo);
+        const res = await fetch("/api/upload-logo", { method: "POST", body: formData });
+        if (res.ok) {
+          ({ url: logoUrl } = await res.json());
+        } else {
+          aviso = "Não foi possível enviar a logomarca agora — nossa equipe vai pedir de novo por e-mail.";
+        }
+      } catch {
+        aviso = "Não foi possível enviar a logomarca agora — nossa equipe vai pedir de novo por e-mail.";
+      }
+      setEnviandoLogo(false);
+    }
+
     const observacoes = [
       corSelecionada && `Cor: ${corSelecionada}`,
-      arquivoLogo && `Logomarca enviada: ${arquivoLogo.name}`,
+      arquivoLogo &&
+        (logoUrl
+          ? `Logomarca enviada: ${arquivoLogo.name}`
+          : `Logomarca selecionada (${arquivoLogo.name}) — envio falhou`),
     ]
       .filter(Boolean)
       .join(" · ");
@@ -30,9 +51,11 @@ export function ProdutoDetalheClient({ produto }: { produto: Produto }) {
         codigo: produto.codigo,
         imagemUrl: produto.imagemUrl,
         observacaoPersonalizacao: observacoes || undefined,
+        logoUrl,
       },
       quantidade
     );
+    setAvisoUpload(aviso);
     setAdicionado(true);
     setTimeout(() => setAdicionado(false), 2500);
   }
@@ -102,14 +125,16 @@ export function ProdutoDetalheClient({ produto }: { produto: Produto }) {
           </div>
           <button
             onClick={handleAdicionar}
-            className="rounded-md bg-navy px-6 py-2.5 text-sm font-medium text-white hover:bg-[#0c3d4a]"
+            disabled={enviandoLogo}
+            className="rounded-md bg-navy px-6 py-2.5 text-sm font-medium text-white hover:bg-[#0c3d4a] disabled:opacity-60"
           >
-            Adicionar ao orçamento
+            {enviandoLogo ? "Enviando logomarca..." : "Adicionar ao orçamento"}
           </button>
         </div>
         {adicionado && (
           <p className="mt-3 text-sm text-teal">Adicionado ao seu orçamento.</p>
         )}
+        {avisoUpload && <p className="mt-3 text-sm text-coral">{avisoUpload}</p>}
       </div>
     </div>
   );

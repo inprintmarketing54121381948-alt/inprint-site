@@ -51,6 +51,7 @@ export interface ItemOrcamento {
   imagemUrl?: string;
   quantidade: number;
   observacaoPersonalizacao?: string;
+  logoUrl?: string;
 }
 
 export interface CampanhaUTM {

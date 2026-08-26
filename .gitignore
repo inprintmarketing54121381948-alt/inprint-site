@@ -18,7 +18,8 @@ build/
 # Strapi
 backend/.tmp/
 backend/.cache/
-backend/public/uploads/
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
 
 # Env — nunca commitar segredos reais, só os .env.example
 .env
